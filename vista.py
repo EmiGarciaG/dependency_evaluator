@@ -6,14 +6,14 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import font
-import textwrap
-import webbrowser
 from tkinter import messagebox
 from tkinter import filedialog
+import textwrap
+import webbrowser
+import io
 from PIL import Image
 #from PIL import ImageTk
 
-import io
 
 MENU="#2c9ea9"
 BG="#000c26"
