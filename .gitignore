@@ -1,0 +1,22 @@
+# Base de Datos
+*.db
+
+# Ignorar entorno virtual python
+venv/
+
+# Ignorar python cache
+__pycache__/
+
+# Ignorar pyinstaller
+*.spec
+dist/
+build/
+
+# Ignorar .json
+*.json
+
+# Ignorar dependency-evaluator ejecutable
+dependency-evaluator
+
+# Ignorar osv-scanner ejecutable
+osv-scanner
