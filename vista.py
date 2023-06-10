@@ -39,14 +39,9 @@ class View(tk.Tk):
         # Establecer el icono del programa
         icono=Image.open("img/icon.ico")
         #self.icon=ImageTk.PhotoImage(icono)
-        
-        # Convertir la imagen en bytes
-        with io.BytesIO() as buffer:
-            icono.save(buffer, format='PNG')
-            img_bytes = buffer.getvalue()
 
         # Crear un objeto PhotoImage a partir de los bytes
-        self.icon = tk.PhotoImage(data=img_bytes)
+        self.icon = tk.PhotoImage(data=self.img_bytes(icono))
 
         self.tk.call('wm', 'iconphoto', self._w, self.icon)
         
@@ -149,7 +144,7 @@ class View(tk.Tk):
         # Añadir la opción de abrir un proyecto existente
         self.sub_arch.add_command(label="Abrir proyecto", underline=0, command=lambda: self.openProject(self.var_project_path), accelerator="Ctrl+O")
         # Añadir la opción de cerrar un proyecto y volver al listado de proyectos
-        self.sub_arch.add_command(label="Cerrar Proyecto", underline=0, command=lambda:  self.projectsTable() if self.init==False else None, accelerator="Ctrl+W")
+        self.sub_arch.add_command(label="Cerrar Proyecto", underline=0, command=lambda:  self.projectsTable() if self.init==False else None, accelerator="Ctrl+Q")
         self.sub_arch.add_separator()
         # Añadir la opción de salir del programa
         self.sub_arch.add_command(label="Salir", underline=0, command=self.quit, accelerator="Alt+F4")
@@ -181,7 +176,7 @@ class View(tk.Tk):
         # Añadir la opción de ver la información sobre el proyecto
         self.sub_about.add_command(label="Propiedad Intelectual", underline=0, command=lambda: self.about())
         # Añadir la opción de ver el manual de usuario
-        self.sub_about.add_command(label="Manual de Usuario", underline=0, command=lambda: webbrowser.open("https://github.com/EmiGarciaG/tfg_code"))
+        self.sub_about.add_command(label="Manual de Usuario", underline=0, command=lambda: webbrowser.open("https://github.com/EmiGarciaG/dependency_evaluator"))
         self.sub_help.add_cascade(label="Acerca de", menu=self.sub_about)
 
         self.menu.add_cascade(label="Ayuda", menu=self.sub_help)
@@ -198,7 +193,7 @@ class View(tk.Tk):
         # Atajos de teclado
         self.bind_all("<Control-n>", lambda event: self.createProject(self.var_project_path)) # Nuevo Proyecto (Ctrl+N)
         self.bind_all("<Control-o>", lambda event: self.openProject(self.var_project_path)) # Abrir Proyecto (Ctrl+O)
-        self.bind_all("<Control-w>", lambda event: self.projectsTable() if self.init==False else None) # Cerrar Proyecto (Ctrl+W)
+        self.bind_all("<Control-q>", lambda event: self.projectsTable() if self.init==False else None) # Cerrar Proyecto (Ctrl+Q)
 
 
     '''%%%%%%%%%%%%%% INICIO %%%%%%%%%%%%%%'''
@@ -210,13 +205,8 @@ class View(tk.Tk):
             # Cargar la imagen de fondo
             self.image=Image.open("img/background.jpg")
 
-            # Convertir la imagen en bytes
-            with io.BytesIO() as buffer:
-                self.image.save(buffer, format='PNG')
-                img_bytes = buffer.getvalue()
-
             # Crear un objeto PhotoImage a partir de los bytes
-            self.scale = tk.PhotoImage(data=img_bytes)
+            self.scale = tk.PhotoImage(data=self.img_bytes(self.image))
 
             #self.scale=ImageTk.PhotoImage(self.image)
 
@@ -230,6 +220,15 @@ class View(tk.Tk):
             # Establecer la ventana como inicializada
             self.init=True
             self.widgets_list.append(self.backg)
+    
+    # Convertir la imagen en bytes
+    def img_bytes(self, img):
+        with io.BytesIO() as buffer:
+            img.save(buffer, format='PNG')
+            img_bytes = buffer.getvalue()
+
+        # Devolver la imagen 
+        return img_bytes
 
     # Redimensionar la imagen de fondo
     def resize_img(self, event, img, backg):
@@ -241,13 +240,7 @@ class View(tk.Tk):
         self.nwimg=img.resize((self.new_width, self.new_height))
 
         # Actualizar la imagen de fondo
-        # Convertir la imagen en bytes
-        with io.BytesIO() as buffer:
-            self.nwimg.save(buffer, format='PNG')
-            img_bytes = buffer.getvalue()
-
-        # Crear un objeto PhotoImage a partir de los bytes
-        self.nwscale = tk.PhotoImage(data=img_bytes)
+        self.nwscale = tk.PhotoImage(data=self.img_bytes(self.nwimg))
         #self.nwscale=ImageTk.PhotoImage(self.nwimg)
         backg.configure(image=self.nwscale)
         backg.image=self.nwscale
@@ -657,6 +650,7 @@ class View(tk.Tk):
         self.open_vuln.pack(pady=(20, 10))
         self.widgets_list.append(self.open_vuln)
         
+        # Botón de volver
         self.backButton(2)
 
     # Evento de hover sobre una vulnerabilidad para mostrar sus detalles
