@@ -176,7 +176,7 @@ class View(tk.Tk):
         # Añadir la opción de ver la información sobre el proyecto
         self.sub_about.add_command(label="Propiedad Intelectual", underline=0, command=lambda: self.about())
         # Añadir la opción de ver el manual de usuario
-        self.sub_about.add_command(label="Manual de Usuario", underline=0, command=lambda: webbrowser.open("https://github.com/EmiGarciaG/dependency_evaluator"))
+        self.sub_about.add_command(label="Manual de Usuario", underline=0, command=lambda: webbrowser.open("https://github.com/EmiGarciaG/dependency_evaluator/blob/main/ManualdeUsuario.pdf"))
         self.sub_help.add_cascade(label="Acerca de", menu=self.sub_about)
 
         self.menu.add_cascade(label="Ayuda", menu=self.sub_help)
