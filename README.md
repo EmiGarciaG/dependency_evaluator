@@ -31,8 +31,6 @@ python3 app.py
 
 ## Consideraciones
 
-## Consideraciones Importantes
-
 **¡Importante! Si cambias los nombres de los archivos, el programa no funcionará correctamente.**
 
 **Asegúrate de no cambiar el nombre de la base de datos local ni el ejecutable de OSV (solamente puede tener el nombre indicado previamente).**
