@@ -13,7 +13,7 @@ pip3 install -r requirements.txt
 ```
 
 ## Instalar software de terceros
-Tener previamente descargado [OSV-Scanner](https://github.com/google/osv-scanner/releases/), cambiar el nombre del ejecutable a osv-scanner y otorgrar permisos de ejecución.
+Tener previamente descargado [OSV-Scanner](https://github.com/google/osv-scanner/releases/), cambiar el nombre del ejecutable a *osv-scanner* y otorgrar permisos de ejecución.
 
 ```bash
 
@@ -28,6 +28,15 @@ Ejecución de la aplicación
 python3 app.py
 
 ```
+
+## Consideraciones
+
+## Consideraciones Importantes
+
+**¡Importante! Si cambias los nombres de los archivos, el programa no funcionará correctamente.**
+
+**Asegúrate de no cambiar el nombre de la base de datos local ni el ejecutable de OSV (solamente puede tener el nombre indicado previamente).**
+
 
 ## Licencia
 
