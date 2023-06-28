@@ -253,7 +253,8 @@ class Model:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
-
+        # Solución para Windows 
+        #process=subprocess.run(command, capture_output=True)
         # Obtener la salida y el error(además de filtrar la información que no nos interesa)
         output, error=process.communicate()
         
